@@ -28,7 +28,7 @@ app.get("/getFlights",async (req,res)=>{
         const flights=connection.query("Select * from  Flight",(err,result,fields)=>{
             if(err)
                 return res.status(500).json({message:"unable to load the flights"})
-            console.log(result)
+           // console.log(result)
             res.status(200).json(result)
 
         })
@@ -80,7 +80,7 @@ app.get("/getFlightsAndPassengers/:flightNumber",async (req,res)=>{
         if(err)
             return res.status(500).json({message:"unable to load the flight"})
         
-        console.log(result)
+        //console.log(result)
         flightdetails=result
          
 
@@ -88,6 +88,7 @@ app.get("/getFlightsAndPassengers/:flightNumber",async (req,res)=>{
     const passengerslist=await axios.get(`http://localhost:3003/getPassengers/${req.params.flightNumber}`)
     //response.passengers=passengers;
     const passengers=passengerslist.data
+   // console.log(passengerslist.data)
     res.status(200).json({flightDetails:flightdetails[0],passengers:passengers});
 
 })
